@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Sebfour Co. | Premium Men's Fashion</title>
+  <!-- Font Awesome 6 for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      background: #f9f9f9;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* header / hero */
+    .hero {
+      background: linear-gradient(135deg, #0b1e2f 0%, #1a3a4b 100%);
+      color: white;
+      padding: 2.5rem 0 3rem;
+      text-align: center;
+      border-bottom: 4px solid #c9a962;
+    }
+
+    .brand {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: #c9a962;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin: 0.5rem 0 1.2rem;
+      font-weight: 300;
+      color: #e0e0e0;
+    }
+
+    .address-block {
+      background: rgba(255, 255, 255, 0.08);
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .address-block i {
+      color: #c9a962;
+      margin-right: 6px;
+    }
+
+    /* product section heading */
+    .section-title {
+      text-align: center;
+      margin: 2.5rem 0 1.8rem;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #0b1e2f;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #c9a962;
+      margin: 0.6rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* product grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 32px rgba(0,0,0,0.13);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #eaeef2;
+      display: block;
+    }
+
+    .product-info {
+      padding: 1.5rem 1.2rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-name {
+      font-size: 1.4rem;
+      font-weight: 650;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #1a3a4b;
+      margin-bottom: 1rem;
+    }
+
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0.6rem 0 1rem;
+    }
+
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .color-circle:hover {
+      border-color: #c9a962;
+      transform: scale(1.1);
+    }
+
+    .color-circle.selected {
+      border: 3px solid #0b1e2f;
+      box-shadow: 0 0 0 3px rgba(201,169,98,0.5);
+    }
+
+    .size-selector {
+      margin: 0.8rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .size-selector label {
+      font-weight: 600;
+      margin-right: 2px;
+    }
+
+    select {
+      padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      background: white;
+      font-weight: 500;
+      cursor: pointer;
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%230b1e2f" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+      background-size: 1.2rem;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.85rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: auto;
+      border: 1px solid #1faa4a;
+      letter-spacing: 0.3px;
+    }
+
+    .whatsapp-btn i {
+      font-size: 1.3rem;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1da851;
+      transform: scale(1.02);
+    }
+
+    .admin-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem;
+      margin: 2.5rem 0 3rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 1px solid #e9e9e9;
+    }
+
+    .admin-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #0b1e2f;
+    }
+
+    .image-manager {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+    }
+
+    .image-upload {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .image-upload label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input[type="file"] {
+      padding: 0.4rem;
+      background: #f4f4f4;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .btn-small {
+      background: #0b1e2f;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.4rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-small.outline {
+      background: white;
+      color: #0b1e2f;
+      border: 2px solid #0b1e2f;
+    }
+
+    .btn-small:hover {
+      background: #c9a962;
+      color: #0b1e2f;
+      border-color: #c9a962;
+    }
+
+    .current-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 1.2rem;
+      align-items: center;
+    }
+
+    .thumb-preview {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #ddd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 2.5rem;
+      color: #555;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 1.5rem;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background: #1da851;
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        font-size: 2.2rem;
+      }
+      .image-manager {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <h1 class="brand">Seb<span>four</span> Co.</h1>
+      <p class="tagline">Gentlemen's Attire · Distinct & Refined</p>
+      <div class="address-block">
+        <i class="fas fa-map-marker-alt"></i> Newtaxi Park Building, Mackay Rd – Opposite Vision Fund Uganda
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <h2 class="section-title">Our Collection</h2>
+
+    <!-- Product grid dynamically populated via JavaScript -->
+    <div id="productContainer" class="product-grid"></div>
+
+    <!-- Admin Section: Add/Remove Images -->
+    <div class="admin-panel">
+      <div class="admin-title">
+        <i class="fas fa-cogs"></i> Manage Product Images
+      </div>
+      <div class="image-manager">
+        <div class="image-upload">
+          <label for="imageUpload">📁 Choose image for product</label>
+          <input type="file" id="imageUpload" accept="image/*">
+        </div>
+        <div>
+          <button id="addImageBtn" class="btn-small"><i class="fas fa-plus-circle"></i> Add to Gallery</button>
+        </div>
+        <div>
+          <button id="removeLastBtn" class="btn-small outline"><i class="fas fa-trash-alt"></i> Remove Last Image</button>
+        </div>
+      </div>
+      <div style="margin-top: 0.8rem; font-size: 0.9rem; color: #4a4a4a;">
+        <i class="fas fa-info-circle"></i> Images you add will appear as products. Click on product to select color/size, then order via WhatsApp.
+      </div>
+      <div id="imagePreviewContainer" class="current-images">
+        <!-- preview thumbnails appear here -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Sebfour Co. – Men's Fashion. <br> <i class="fab fa-whatsapp"></i> +256 757 306 640</p>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a href="https://wa.me/256757306640" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    (function() {
+      // --- PRODUCT DATA (colors, sizes, default images) ---
+      // Images are stored in an array; admin can add/remove.
+      const DEFAULT_IMAGES = [
+        "https://placehold.co/600x600/1a3a4b/white?text=Classic+Suit",
+        "https://placehold.co/600x600/2f4f4f/c9a962?text=Casual+Blazer",
+        "https://placehold.co/600x600/4a3b32/white?text=Oxford+Shirt",
+        "https://placehold.co/600x600/1e2b2f/ddd?text=Chinos+Khaki"
+      ];
+
+      // Product names derived from image alt (or generic)
+      function getProductNameFromUrl(url, index) {
+        // try to extract text after 'text=' in placeholder, else generic
+        if (url.includes('text=')) {
+          const match = url.match(/text=([^&]+)/);
+          if (match) return decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+        return `Menswear #${index + 1}`;
+      }
+
+      // Available colors for each product (we'll keep static set)
+      const COLOR_PALETTE = [
+        { name: "Black", code: "#1e1e1e" },
+        { name: "Navy", code: "#1B3A5C" },
+        { name: "Burgundy", code: "#722F37" },
+        { name: "Olive", code: "#556B2F" },
+        { name: "Grey", code: "#6C757D" }
+      ];
+
+      const SIZE_OPTIONS = ["S", "M", "L", "XL", "XXL"];
+
+      // ---------- STATE ----------
+      let productImages = [...DEFAULT_IMAGES];   // array of image URLs
+
+      // DOM elements
+      const productContainer = document.getElementById('productContainer');
+      const imageUpload = document.getElementById('imageUpload');
+      const addImageBtn = document.getElementById('addImageBtn');
+      const removeLastBtn = document.getElementById('removeLastBtn');
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+      // ---------- RENDER PRODUCTS ----------
+      function renderProducts() {
+        if (!productContainer) return;
+        productContainer.innerHTML = '';
+
+        if (productImages.length === 0) {
+          productContainer.innerHTML = `<p style="text-align:center; grid-column:1/-1; padding:2rem; color:#777;">No products yet. Add images using the panel below.</p>`;
+          renderImagePreviews();
+          return;
+        }
+
+        productImages.forEach((imgUrl, index) => {
+          const productName = getProductNameFromUrl(imgUrl, index);
+          // Price can be static or varied; we use a base price.
+          const price = (75000 + index * 5000).toLocaleString(); // UGX example
+
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.dataset.index = index;
+          card.dataset.image = imgUrl;
+
+          // Build color circles HTML
+          let colorCirclesHTML = '';
+          COLOR_PALETTE.forEach((color, colorIdx) => {
+            colorCirclesHTML += `
+              <span class="color-circle" data-color="${color.name}" data-colorcode="${color.code}" 
+                    style="background-color: ${color.code};" title="${color.name}"></span>
+            `;
+          });
+
+          // Size options dropdown
+          let sizeOptionsHTML = SIZE_OPTIONS.map(size => `<option value="${size}">${size}</option>`).join('');
+
+          card.innerHTML = `
+            <img src="${imgUrl}" alt="${productName}" class="product-image" loading="lazy">
+            <div class="product-info">
+              <div class="product-name">${productName}</div>
+              <div class="product-price">UGX ${price}</div>
+              <div class="color-options" data-product-index="${index}">
+                ${colorCirclesHTML}
+              </div>
+              <div class="size-selector">
+                <label><i class="fas fa-ruler"></i> Size:</label>
+                <select class="size-dropdown" data-product-index="${index}">
+                  ${sizeOptionsHTML}
+                </select>
+              </div>
+              <button class="whatsapp-btn order-btn" data-index="${index}">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+              </button>
+            </div>
+          `;
+
+          productContainer.appendChild(card);
+        });
+
+        // Attach event listeners for color selection and order buttons
+        attachProductEvents();
+        renderImagePreviews();
+      }
+
+      // ---------- COLOR SELECTION (visual) ----------
+      function attachProductEvents() {
+        // Color circle click: toggle selected class
+        document.querySelectorAll('.color-circle').forEach(circle => {
+          circle.addEventListener('click', function(e) {
+            const parentColorContainer = this.closest('.color-options');
+            if (!parentColorContainer) return;
+            // Remove selected class from all circles in same product
+            parentColorContainer.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+            // Add selected to clicked circle
+            this.classList.add('selected');
+          });
+        });
+
+        // Order button: collect data and open WhatsApp
+        document.querySelectorAll('.order-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            const index = this.dataset.index;
+            if (index === undefined) return;
+            
+            const productCard = this.closest('.product-card');
+            if (!productCard) return;
+            
+            const imageUrl = productCard.dataset.image || productImages[index] || '';
+            const productNameElem = productCard.querySelector('.product-name');
+            const productName = productNameElem ? productNameElem.textContent : 'Menswear';
+            
+            // Get selected color
+            const selectedColorCircle = productCard.querySelector('.color-circle.selected');
+            let selectedColor = 'Not specified';
+            if (selectedColorCircle) {
+              selectedColor = selectedColorCircle.dataset.color || selectedColorCircle.title || 'Not specified';
+            }
+            
+            // Get size
+            const sizeSelect = productCard.querySelector('.size-dropdown');
+            const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+            
+            // Build WhatsApp message
+            const message = `Hello Sebfour Co.,%0A%0AI want to order:%0A*Product:* ${productName}%0A*Color:* ${selectedColor}%0A*Size:* ${selectedSize}%0A*Image:* ${encodeURIComponent(imageUrl)}%0A%0APlease confirm availability.`;
+            
+            const whatsappNumber = '256757306640'; // without + for wa.me
+            const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(url, '_blank');
+          });
+        });
+
+        // Pre-select first color for each product if none selected
+        document.querySelectorAll('.color-options').forEach(container => {
+          const circles = container.querySelectorAll('.color-circle');
+          if (circles.length > 0 && !container.querySelector('.color-circle.selected')) {
+            circles[0].classList.add('selected');
+          }
+        });
+      }
+
+      // ---------- IMAGE PREVIEWS (admin) ----------
+      function renderImagePreviews() {
+        if (!imagePreviewContainer) return;
+        imagePreviewContainer.innerHTML = '';
+        if (productImages.length === 0) {
+          imagePreviewContainer.innerHTML = '<span style="color:#888; font-style:italic;">No images in gallery.</span>';
+          return;
+        }
+        productImages.forEach((url, idx) => {
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = `product ${idx+1}`;
+          img.className = 'thumb-preview';
+          img.title = getProductNameFromUrl(url, idx);
+          imagePreviewContainer.appendChild(img);
+        });
+      }
+
+      // ---------- ADD IMAGE ----------
+      function addImageFromUpload() {
+        if (!imageUpload || !imageUpload.files || imageUpload.files.length === 0) {
+          alert('Please select an image file first.');
+          return;
+        }
+        const file = imageUpload.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const dataUrl = e.target.result;
+          productImages.push(dataUrl);
+          renderProducts();
+          // clear file input
+          imageUpload.value = '';
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // ---------- REMOVE LAST IMAGE ----------
+      function removeLastImage() {
+        if (productImages.length === 0) {
+          alert('No images to remove.');
+          return;
+        }
+        productImages.pop();
+        renderProducts();
+      }
+
+      // ---------- INITIAL SETUP & EVENT LISTENERS ----------
+      window.addEventListener('DOMContentLoaded', () => {
+        renderProducts();
+
+        if (addImageBtn) {
+          addImageBtn.addEventListener('click', addImageFromUpload);
+        }
+        if (removeLastBtn) {
+          removeLastBtn.addEventListener('click', removeLastImage);
+        }
+
+        // Optional: allow pressing Enter on file input? Not needed.
+      });
+
+    })();
+  </script>
+</body>
+</html>
